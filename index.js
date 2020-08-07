@@ -30,19 +30,60 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use('/', cardRouter);
 /**
  * @swagger
+ * /:
+ *  get:
+ *      description: Get all cards
+ *      responses:
+ *          '200':
+ *              description: Good request
+ *          '500':
+ *              description: Bad request
+ *      'content':
+ *         "application/json":
+ *            "schema":
+ *              "text": "String"
+ *
+ * /id:
+ *    get:
+ *      description: Get all cards
+ *      responses:
+ *          '200':
+ *              description: Good request
+ *          '500':
+ *              description: Bad request
+
+
+
+
  * /create:
  *  post:
  *      description: Add card to DB
  *      responses:
- *          '400':
+ *          '200':
+ *              description: Item was added
+ *          '500':
  *              description: Bad request
+ *      'content':
+ *         "application/json":
+ *            "schema":
+ *              "text": "String"
+ *
  *
  */
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
-app.use('/', cardRouter);
 
+/**
+ * @swagger
+ * /id:
+ *    put:
+ *      description: Update card
+ *    responses:
+ *      '201':
+ *        description: Successfully update user
+ */
 
 //
 mongoose.connect(config.dataBase,
