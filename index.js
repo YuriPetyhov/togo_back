@@ -1,6 +1,5 @@
 const config = require('./config/serverConfig');
 const mongoose = require('mongoose');
-var MongoClient = require('mongodb').MongoClient
 const express = require("express");
 const cors = require('cors');
 const swaggerUI = require('swagger-ui-express');
@@ -61,6 +60,8 @@ app.use('/', cardRouter);
 
  * /create:
  *  post:
+ *      tags:
+ *      - "Card"
  *      description: Add card to DB
  *      responses:
  *          '200':
